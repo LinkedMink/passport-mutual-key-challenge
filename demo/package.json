@@ -1,0 +1,24 @@
+{
+  "name": "@linkedmink/passport-mutual-key-challenge-demo",
+  "version": "0.1.0",
+  "description": "Demo App",
+  "main": "dist/CliSampleApp.js",
+  "license": "MIT",
+  "author": {
+    "name": "Harlan Sang",
+    "email": "harlan@linkedmink.space"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LinkedMink/multilevel-aging-cache"
+  },
+  "scripts": {
+    "start": "npm run build && node ./dist/App.js",
+    "build": "tsc --project ./tsconfig.json",
+    "lint": "eslint -c ../.eslintrc.js ./**/*.ts",
+    "format": "prettier --write ./**/*.ts"
+  },
+  "dependencies": {
+    "@linkedmink/passport-mutual-key-challenge": "0.1.0"
+  }
+}
