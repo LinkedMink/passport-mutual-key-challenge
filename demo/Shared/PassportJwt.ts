@@ -12,7 +12,7 @@ import {
 export const JWT_PRIVATE_KEY = fs.readFileSync("server.key");
 
 export const JWT_OPTIONS = {
-  expiresIn: "30 days",
+  expiresIn: "2 days",
   audience: "api.local",
   issuer: "auth.local",
   algorithm: "RS256",

@@ -19,7 +19,7 @@ export interface MockUser {
 const getUser = (req: IncomingMessage, key: Buffer): MockUser | null => {
   return {
     userId: uuidV4(),
-    key: fs.readFileSync(""),
+    key: fs.readFileSync("client.key.pub"),
   };
 };
 

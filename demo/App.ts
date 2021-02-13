@@ -18,7 +18,7 @@ addMutualStrategy(passport);
 app.use(passport.initialize());
 
 app.use("/authenticate", authenticateRouter);
-app.use("/protected", [
+app.get("/protected", [
   authenticateJwt,
   (req: Request, res: Response) => {
     const user = req.user as IJwtPayload;

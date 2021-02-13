@@ -6,6 +6,9 @@ import {
   EncryptOptions,
 } from "./Types";
 
+/**
+ * Options you must supply when creating this strategy
+ */
 export interface MutualKeyChallengeRequiredOptions<T = unknown> {
   /**
    * The servers private key for signing, encrypting, and decrypting challenges
@@ -18,13 +21,31 @@ export interface MutualKeyChallengeRequiredOptions<T = unknown> {
   userFunc: GetUserByPublicKeyFunc<T>;
 }
 
+/**
+ * Options that have defaults if nothing is supplied
+ */
 export interface MutualKeyChallengeOptionalOptions {
+  /**
+   * How long the server will accept a response for an open challenge it has issued
+   */
   expireChallengeInSec: number;
+  /**
+   * This function extracts the server or client challenge from the incoming HTTP request
+   */
   challengeOrResponseFunc: GetChallengeOrResponseFunc;
+  /**
+   * Options to customize how the message is encrypted. The client must use the same format.
+   */
   encrypt: EncryptOptions;
 }
 
+/**
+ * Options allowed on the passport.authenticate function
+ */
 export type MutualKeyChallengeAuthOptions = Record<string, never>;
 
+/**
+ * All available options when creating this strategy
+ */
 export type MutualKeyChallengeOptions<T = unknown> = MutualKeyChallengeRequiredOptions<T> &
   MutualKeyChallengeOptionalOptions;

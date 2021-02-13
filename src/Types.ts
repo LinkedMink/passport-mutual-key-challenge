@@ -1,7 +1,8 @@
 import { IncomingMessage } from "http";
 
 export interface EncryptOptions {
-  padding: number;
+  messagePadding: number;
+  signaturePadding: number;
   hashAlgorithm: string;
 }
 
@@ -30,7 +31,7 @@ export interface ClientChallenge {
 
 export interface CachedChallenge {
   key: Buffer;
-  clientChallenged: string;
+  clientChallenged: Buffer;
   requestDateTime: Date;
 }
 

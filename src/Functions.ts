@@ -138,10 +138,11 @@ export const challengeByBase64Header = (
 export function getDefaultOptions(): MutualKeyChallengeOptionalOptions {
   return {
     challengeOrResponseFunc: challengeByBase64Header(),
-    expireChallengeInSec: 30,
+    expireChallengeInSec: 120,
     encrypt: {
       hashAlgorithm: "sha256",
-      padding: constants.RSA_NO_PADDING,
+      messagePadding: constants.RSA_PKCS1_OAEP_PADDING,
+      signaturePadding: constants.RSA_PKCS1_PADDING,
     },
   };
 }

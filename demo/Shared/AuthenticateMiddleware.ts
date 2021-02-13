@@ -3,7 +3,7 @@ import passport from "passport";
 import { IJwtPayload, PASSPORT_JWT_STRATEGY } from "./PassportJwt";
 
 function isError(error: unknown): error is Error {
-  return (error as Error).message !== undefined;
+  return !!error && (error as Error).message !== undefined;
 }
 
 function isString(toCheck: unknown): toCheck is string {
