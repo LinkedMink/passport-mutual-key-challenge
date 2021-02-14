@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SignedMessage | @linkedmink/passport-mutual-key-challenge</title>
+	<title>ChallengeCache | @linkedmink/passport-mutual-key-challenge</title>
 	<meta name="description" content="Documentation for @linkedmink/passport-mutual-key-challenge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -58,10 +58,10 @@
 					<a href="../modules/types.html">Types</a>
 				</li>
 				<li>
-					<a href="types.signedmessage.html">SignedMessage</a>
+					<a href="types.challengecache.html">ChallengeCache</a>
 				</li>
 			</ul>
-			<h1>Interface SignedMessage</h1>
+			<h1>Interface ChallengeCache</h1>
 		</div>
 	</div>
 </header>
@@ -71,7 +71,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A challenge message that has been signed</p>
+						<p>A cache of challenges that allows only getting the key once per set()</p>
 					</div>
 				</div>
 			</section>
@@ -79,8 +79,14 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">SignedMessage</span>
+						<span class="target">ChallengeCache</span>
 					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implemented by</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../classes/localchallengecache.html" class="tsd-signature-type" data-tsd-kind="Class">LocalChallengeCache</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -88,47 +94,75 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="types.signedmessage.html#message" class="tsd-kind-icon">message</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="types.signedmessage.html#signature" class="tsd-kind-icon">signature</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="types.challengecache.html#get" class="tsd-kind-icon">get</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="types.challengecache.html#set" class="tsd-kind-icon">set</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="message" class="tsd-anchor"></a>
-					<h3>message</h3>
-					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Buffer</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/LinkedMink/passport-mutual-key-challenge/blob/b36a365/src/Types/Messages.ts#L9">src/Types/Messages.ts:9</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The challenge nonce message in either the encrypted or unencrypted form depending
-							on stage and recipient party.</p>
-						</div>
-					</div>
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="get" class="tsd-anchor"></a>
+					<h3>get</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><a href="types.cachedchallenge.html" class="tsd-signature-type" data-tsd-kind="Interface">CachedChallenge</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/LinkedMink/passport-mutual-key-challenge/blob/b36a365/src/Types/ChallengeCache.ts#L27">src/Types/ChallengeCache.ts:27</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>key: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The key to retrieve</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><a href="types.cachedchallenge.html" class="tsd-signature-type" data-tsd-kind="Interface">CachedChallenge</a></h4>
+							<p>The cached challenge or null if the key is expired or does not exist</p>
+						</li>
+					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="signature" class="tsd-anchor"></a>
-					<h3>signature</h3>
-					<div class="tsd-signature tsd-kind-icon">signature<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Buffer</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/LinkedMink/passport-mutual-key-challenge/blob/b36a365/src/Types/Messages.ts#L13">src/Types/Messages.ts:13</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>A signature of SignedMessage.message in the unecrypted form</p>
-						</div>
-					</div>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="set" class="tsd-anchor"></a>
+					<h3>set</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">set<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><a href="types.cachedchallenge.html" class="tsd-signature-type" data-tsd-kind="Interface">CachedChallenge</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/LinkedMink/passport-mutual-key-challenge/blob/b36a365/src/Types/ChallengeCache.ts#L32">src/Types/ChallengeCache.ts:32</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>key: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The key to save</p>
+									</div>
+								</li>
+								<li>
+									<h5>value: <a href="types.cachedchallenge.html" class="tsd-signature-type" data-tsd-kind="Interface">CachedChallenge</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The value to save</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -154,9 +188,21 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
 						<a href="types.cachedchallenge.html" class="tsd-kind-icon">Cached<wbr>Challenge</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-namespace">
 						<a href="types.challengecache.html" class="tsd-kind-icon">Challenge<wbr>Cache</a>
+						<ul>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="types.challengecache.html#get" class="tsd-kind-icon">get</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="types.challengecache.html#set" class="tsd-kind-icon">set</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
 						<a href="types.clientchallenge.html" class="tsd-kind-icon">Client<wbr>Challenge</a>
 					</li>
@@ -166,21 +212,9 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
 						<a href="types.serverchallenge.html" class="tsd-kind-icon">Server<wbr>Challenge</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-namespace">
+					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
 						<a href="types.signedmessage.html" class="tsd-kind-icon">Signed<wbr>Message</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="types.signedmessage.html#message" class="tsd-kind-icon">message</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="types.signedmessage.html#signature" class="tsd-kind-icon">signature</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace tsd-has-type-parameter">
 						<a href="types.userkeyrecord.html" class="tsd-kind-icon">User<wbr>Key<wbr>Record</a>
 					</li>
@@ -203,15 +237,16 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
 				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 		</div>
 	</div>

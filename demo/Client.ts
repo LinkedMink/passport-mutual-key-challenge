@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 import crypto, { constants, KeyObject } from "crypto";
-import { response } from "express";
 import fs from "fs";
 import http, { RequestOptions } from "http";
 
@@ -30,7 +29,6 @@ const encryptOpts = (key: KeyObject) => {
 const signOpts = (key: KeyObject) => ({ key, padding: constants.RSA_PKCS1_PADDING });
 
 const main = async () => {
-  const clientPubKey = fs.readFileSync("client.key.pub").toString("base64");
   const clientPrivateKey = crypto.createPrivateKey(fs.readFileSync("client.key"));
   const serverPubKey = crypto.createPublicKey(fs.readFileSync("server.key.pub"));
 
@@ -44,23 +42,21 @@ const main = async () => {
     },
   } as RequestOptions;
 
-
   const nonce = crypto.randomBytes(128);
   const challengeMessage = crypto.publicEncrypt(encryptOpts(serverPubKey), nonce);
   const challengeSignature = crypto.sign("sha256", nonce, signOpts(clientPrivateKey));
 
   const challenge = {
-    key: clientPubKey,
+    userId: "FAKE_ID_123",
     challenge: {
       message: challengeMessage.toString("base64"),
       signature: challengeSignature.toString("base64"),
     },
   };
 
-
   const challengePromise = new Promise<MutualResponse>((resolve, reject) => {
     const request = http.request(authRequestOptions, response => {
-      let responseData = '';
+      let responseData = "";
       response.on("data", function (chunk) {
         responseData += chunk;
       });
@@ -111,7 +107,7 @@ const main = async () => {
   const responseSignature = crypto.sign("sha256", responseMessage, signOpts(clientPrivateKey));
 
   const postResponse = {
-    key: clientPubKey,
+    userId: "FAKE_ID_123",
     response: {
       message: responseMessage.toString("base64"),
       signature: responseSignature.toString("base64"),
@@ -120,7 +116,7 @@ const main = async () => {
 
   const responsePromise = new Promise<TokenResponse>((resolve, reject) => {
     const request = http.request(authRequestOptions, response => {
-      let responseData = '';
+      let responseData = "";
       response.on("data", function (chunk) {
         responseData += chunk;
       });
@@ -137,34 +133,38 @@ const main = async () => {
     request.end();
   });
 
+  
   const tokenResponse = await responsePromise;
   if (!tokenResponse.token) {
     console.log(`Failed to get token!`);
     return 1;
   }
-  
-  console.log("\x1b[32mHandshake Success!\x1b[0m")
+
+  console.log("\x1b[32mHandshake Success!\x1b[0m");
 
   await new Promise((resolve, reject) => {
-    const request = http.request({
-      host: "localhost",
-      path: "/protected",
-      port: 8080,
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${tokenResponse.token}`
-      }
-    }, response => {
-      let responseData = '';
-      response.on("data", function (chunk) {
-        responseData += chunk;
-      });
+    const request = http.request(
+      {
+        host: "localhost",
+        path: "/protected",
+        port: 8080,
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${tokenResponse.token}`,
+        },
+      },
+      response => {
+        let responseData = "";
+        response.on("data", function (chunk) {
+          responseData += chunk;
+        });
 
-      response.on("end", function () {
-        console.log(`Server Response: ${responseData}`);
-        resolve(responseData);
-      });
-    });
+        response.on("end", function () {
+          console.log(`Server Response: ${responseData}`);
+          resolve(responseData);
+        });
+      }
+    );
     request.end();
   });
 
@@ -172,7 +172,7 @@ const main = async () => {
 };
 
 main()
-  .then(process.exit)
+  .then(r => process.exit(r))
   .catch(e => {
     console.log(e);
     process.exit(1);

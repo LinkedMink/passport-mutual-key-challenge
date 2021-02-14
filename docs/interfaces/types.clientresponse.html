@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>EncryptOptions | @linkedmink/passport-mutual-key-challenge</title>
+	<title>ClientResponse | @linkedmink/passport-mutual-key-challenge</title>
 	<meta name="description" content="Documentation for @linkedmink/passport-mutual-key-challenge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -58,21 +58,29 @@
 					<a href="../modules/types.html">Types</a>
 				</li>
 				<li>
-					<a href="types.encryptoptions.html">EncryptOptions</a>
+					<a href="types.clientresponse.html">ClientResponse</a>
 				</li>
 			</ul>
-			<h1>Interface EncryptOptions</h1>
+			<h1>Interface ClientResponse</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>When an incoming request comes in, the client&#39;s response is parsed into this initial form
+						to be processed</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">EncryptOptions</span>
+						<span class="target">ClientResponse</span>
 					</li>
 				</ul>
 			</section>
@@ -83,8 +91,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="types.encryptoptions.html#hashalgorithm" class="tsd-kind-icon">hash<wbr>Algorithm</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="types.encryptoptions.html#padding" class="tsd-kind-icon">padding</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="types.clientresponse.html#clientresponsed" class="tsd-kind-icon">client<wbr>Responsed</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="types.clientresponse.html#userid" class="tsd-kind-icon">user<wbr>Id</a></li>
 							</ul>
 						</section>
 					</div>
@@ -93,24 +101,34 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="hashalgorithm" class="tsd-anchor"></a>
-					<h3>hash<wbr>Algorithm</h3>
-					<div class="tsd-signature tsd-kind-icon">hash<wbr>Algorithm<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="clientresponsed" class="tsd-anchor"></a>
+					<h3>client<wbr>Responsed</h3>
+					<div class="tsd-signature tsd-kind-icon">client<wbr>Responsed<span class="tsd-signature-symbol">:</span> <a href="types.signedmessage.html" class="tsd-signature-type" data-tsd-kind="Interface">SignedMessage</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/Types.ts:5</li>
+							<li>Defined in <a href="https://github.com/LinkedMink/passport-mutual-key-challenge/blob/b36a365/src/Types/Messages.ts#L47">src/Types/Messages.ts:47</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A signed message sent by the client with the decrypted challenge nonce issued by tbe server</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="padding" class="tsd-anchor"></a>
-					<h3>padding</h3>
-					<div class="tsd-signature tsd-kind-icon">padding<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="userid" class="tsd-anchor"></a>
+					<h3>user<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">user<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/Types.ts:4</li>
+							<li>Defined in <a href="https://github.com/LinkedMink/passport-mutual-key-challenge/blob/b36a365/src/Types/Messages.ts#L43">src/Types/Messages.ts:43</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A key that can uniquely identify the user</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -119,9 +137,6 @@
 				<ul>
 					<li class=" ">
 						<a href="../modules.html">Exports</a>
-					</li>
-					<li class=" tsd-kind-namespace">
-						<a href="../modules/optionfuncs.html">Option<wbr>Funcs</a>
 					</li>
 					<li class="current tsd-kind-namespace">
 						<a href="../modules/types.html">Types</a>
@@ -140,10 +155,7 @@
 						<a href="types.cachedchallenge.html" class="tsd-kind-icon">Cached<wbr>Challenge</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="types.challenge.html" class="tsd-kind-icon">Challenge</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="types.challengeresponse.html" class="tsd-kind-icon">Challenge<wbr>Response</a>
+						<a href="types.challengecache.html" class="tsd-kind-icon">Challenge<wbr>Cache</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
 						<a href="types.clientchallenge.html" class="tsd-kind-icon">Client<wbr>Challenge</a>
@@ -151,35 +163,35 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="types.encryptoptions.html" class="tsd-kind-icon">Encrypt<wbr>Options</a>
+						<a href="types.clientresponse.html" class="tsd-kind-icon">Client<wbr>Response</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="types.encryptoptions.html#hashalgorithm" class="tsd-kind-icon">hash<wbr>Algorithm</a>
+								<a href="types.clientresponse.html#clientresponsed" class="tsd-kind-icon">client<wbr>Responsed</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="types.encryptoptions.html#padding" class="tsd-kind-icon">padding</a>
+								<a href="types.clientresponse.html#userid" class="tsd-kind-icon">user<wbr>Id</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
+						<a href="types.serverchallenge.html" class="tsd-kind-icon">Server<wbr>Challenge</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
 						<a href="types.signedmessage.html" class="tsd-kind-icon">Signed<wbr>Message</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
-						<a href="../modules/types.html#challengeorresponse" class="tsd-kind-icon">Challenge<wbr>OrResponse</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-namespace tsd-has-type-parameter">
+						<a href="types.userkeyrecord.html" class="tsd-kind-icon">User<wbr>Key<wbr>Record</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
-						<a href="../modules/types.html#getchallengeorresponsefunc" class="tsd-kind-icon">Get<wbr>Challenge<wbr>OrResponse<wbr>Func</a>
+						<a href="../modules/types.html#getclientchallengeorresponsefunc" class="tsd-kind-icon">Get<wbr>Client<wbr>Challenge<wbr>OrResponse<wbr>Func</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
 						<a href="../modules/types.html#getserverkeyfunc" class="tsd-kind-icon">Get<wbr>Server<wbr>Key<wbr>Func</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter">
-						<a href="../modules/types.html#getuserbypublickeyfunc" class="tsd-kind-icon">Get<wbr>User<wbr>ByPublic<wbr>Key<wbr>Func</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
-						<a href="../modules/types.html#inmemorykey" class="tsd-kind-icon">In<wbr>Memory<wbr>Key</a>
+						<a href="../modules/types.html#getuserfunc" class="tsd-kind-icon">Get<wbr>User<wbr>Func</a>
 					</li>
 				</ul>
 			</nav>
@@ -191,14 +203,15 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 		</div>
 	</div>

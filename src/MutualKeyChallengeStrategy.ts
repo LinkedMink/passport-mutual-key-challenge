@@ -1,33 +1,29 @@
 import { IncomingMessage } from "http";
 import { Strategy } from "passport-strategy";
-import { getDefaultOptions } from "./Functions";
 import { MessageVerifier } from "./MessageVerifier";
-import { MutualKeyChallengeAuthOptions, MutualKeyChallengeOptions } from "./Options";
-import { isChallengeResponse, isPromise } from "./TypeCheck";
 import {
-  CachedChallenge,
-  Challenge,
-  ChallengeError,
-  ChallengeResponse,
-  ChallengeStage,
-  ClientChallenge,
-} from "./Types";
+  getDefaultOptions,
+  MutualKeyChallengeAuthOptions,
+  MutualKeyChallengeOptions,
+  MutualKeyChallengeResolvedOptions,
+} from "./MutualKeyChallengeOptions";
+import { isClientResponse, isPromise } from "./Helpers/TypeCheck";
+import { ClientChallenge, ClientResponse, ServerChallenge } from "./Types/Messages";
+import { ChallengeError, ChallengeStage } from "./Types";
+import { UserKeyRecord } from "./Types/Functions";
 
 export class MutualKeyChallengeStrategy<T = unknown> extends Strategy {
-  private readonly options: MutualKeyChallengeOptions<T>;
-  private readonly challengeCache = new Map<string, CachedChallenge[]>();
+  private readonly options: MutualKeyChallengeResolvedOptions<T>;
   private readonly verifier: MessageVerifier;
-  private readonly cacheTtlMs: number;
 
   constructor(options: MutualKeyChallengeOptions<T>) {
     super();
-    
+
     this.options = {
       ...getDefaultOptions(),
       ...options,
-    } as MutualKeyChallengeOptions<T>;
-    this.verifier = new MessageVerifier(options.serverKey, options.encrypt);
-    this.cacheTtlMs = this.options.expireChallengeInSec * 1000;
+    } as MutualKeyChallengeResolvedOptions<T>;
+    this.verifier = new MessageVerifier(this.options.serverKey, this.options.cryptography);
   }
 
   async authenticate(req: IncomingMessage, options?: MutualKeyChallengeAuthOptions): Promise<void> {
@@ -36,48 +32,29 @@ export class MutualKeyChallengeStrategy<T = unknown> extends Strategy {
       return this.error(request);
     }
 
-    if (isChallengeResponse(request)) {
+    if (isClientResponse(request)) {
       return this.handleChallengeResponse(req, request);
     }
 
     return this.handleChallengeRequest(req, request);
   }
 
-  private async handleChallengeResponse(req: IncomingMessage, message: ChallengeResponse) {
-    const user = await this.getUserResult(req, message.key);
+  private async handleChallengeResponse(req: IncomingMessage, message: ClientResponse) {
+    const user = await this.getUserResult(req, message.userId);
     if (ChallengeError.isType(user)) {
       return this.error(user);
     }
 
-    if (!await this.verifier.verify(message.key, message.clientResponsed)) {
+    if (!(await this.verifier.verify(user.publicKey, message.clientResponsed))) {
       return this.error(
         new ChallengeError("The response could not be verified", ChallengeStage.ServerChallenge)
       );
     }
 
-    const keyHash = this.verifier.hash(message.key);
-    const bucket = this.challengeCache.get(keyHash);
-    if (!bucket) {
+    const challenge = this.options.challengeCache.get(message.userId);
+    if (!challenge) {
       return this.error(
-        new ChallengeError("Challenge is not initiated", ChallengeStage.ServerChallenge)
-      );
-    }
-
-    const cIndex = bucket.findIndex(c => c.key.equals(message.key));
-    if (cIndex < 0) {
-      return this.error(
-        new ChallengeError("Challenge is not initiated", ChallengeStage.ServerChallenge)
-      );
-    }
-
-    const challenge = bucket.splice(cIndex, 1)[0];
-    if (bucket.length <= 0) {
-      this.challengeCache.delete(keyHash);
-    }
-
-    if (Date.now() - challenge.requestDateTime.getTime() > this.cacheTtlMs) {
-      return this.error(
-        new ChallengeError("Challenge is expired", ChallengeStage.ServerChallenge)
+        new ChallengeError("Challenge is not initiated or expired", ChallengeStage.ServerChallenge)
       );
     }
 
@@ -87,16 +64,16 @@ export class MutualKeyChallengeStrategy<T = unknown> extends Strategy {
       );
     }
 
-    this.success(user, message.key);
-  };
+    this.success(user.user, user.publicKey);
+  }
 
-  private async handleChallengeRequest(req: IncomingMessage, message: Challenge) {
-    const user = await this.getUserResult(req, message.key);
+  private async handleChallengeRequest(req: IncomingMessage, message: ClientChallenge) {
+    const user = await this.getUserResult(req, message.userId);
     if (ChallengeError.isType(user)) {
       return this.error(user);
     }
 
-    const decrypted = await this.verifier.decryptAndVerify(message.key, message.clientRequested);
+    const decrypted = await this.verifier.decryptAndVerify(user.publicKey, message.clientRequested);
     if (!decrypted) {
       return this.error(
         new ChallengeError("The response could not be verified", ChallengeStage.ServerChallenge)
@@ -106,28 +83,27 @@ export class MutualKeyChallengeStrategy<T = unknown> extends Strategy {
     const decryptedMessage = await this.verifier.sign(decrypted);
 
     const nonce = this.verifier.getNonce();
-    const nonceMessage = await this.verifier.encryptAndSign(message.key, nonce);
+    const nonceMessage = await this.verifier.encryptAndSign(user.publicKey, nonce);
 
-    const keyHash = this.verifier.hash(message.key);
-    this.challengeCache.set(keyHash, [{ 
-      key: message.key,
+    this.options.challengeCache.set(message.userId, {
+      userId: message.userId,
       clientChallenged: nonce,
-      requestDateTime: message.requestDateTime
-    }])
+      requestDateTime: message.requestDateTime,
+    });
 
     const challenge = {
       clientRequested: decryptedMessage,
       serverRequested: nonceMessage,
-    } as ClientChallenge;
+    } as ServerChallenge;
 
     this.fail(challenge, 401);
-  };
+  }
 
   private async getUserResult(
     req: IncomingMessage,
-    key: Buffer
-  ): Promise<T | ChallengeError> {
-    const userResult = this.options.userFunc(req, key);
+    userId: string
+  ): Promise<UserKeyRecord<T> | ChallengeError> {
+    const userResult = this.options.userFunc(req, userId);
     if (!userResult) {
       return new ChallengeError("No user could be found", ChallengeStage.ServerChallenge);
     }
@@ -138,5 +114,5 @@ export class MutualKeyChallengeStrategy<T = unknown> extends Strategy {
     }
 
     return user;
-  };
+  }
 }

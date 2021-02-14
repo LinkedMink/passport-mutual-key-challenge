@@ -16,7 +16,7 @@
     "start": "ts-node-dev --inspect=0.0.0.0:9229 --respawn --transpile-only ./App.ts",
     "startClient": "ts-node-dev --inspect=0.0.0.0:9228 --respawn --transpile-only ./Client.ts",
     "build": "tsc --project ./tsconfig.json",
-    "lint": "eslint -c ../.eslintrc.js ./**/*.ts",
+    "lint": "eslint -c ../.eslintrc.js ./Shared/*.ts ./*.ts",
     "format": "prettier --write ./**/*.ts"
   },
   "dependencies": {

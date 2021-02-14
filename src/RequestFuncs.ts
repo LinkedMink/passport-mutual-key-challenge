@@ -1,12 +1,7 @@
-import { constants } from "crypto";
 import { IncomingMessage } from "http";
-import {
-  ChallengeError,
-  ChallengeOrResponse,
-  ChallengeStage,
-  GetChallengeOrResponseFunc,
-} from "./Types";
-import { MutualKeyChallengeOptionalOptions } from "./Options";
+import { ChallengeError, ChallengeStage } from "./Types/ChallengeError";
+import { ClientChallenge, ClientResponse } from "./Types/Messages";
+import { GetClientChallengeOrResponseFunc } from "./Types/Functions";
 
 interface BodyIncomingMessage extends IncomingMessage {
   body: Record<string, string | SignedChallenge>;
@@ -18,16 +13,16 @@ interface SignedChallenge {
 }
 
 export const challengeByBase64Body = (
-  userKeyProperty: string,
+  userIdProperty: string,
   challengeProperty: string,
   responseProperty: string
-): GetChallengeOrResponseFunc => {
-  return (req: IncomingMessage): ChallengeOrResponse | ChallengeError => {
+): GetClientChallengeOrResponseFunc => {
+  return (req: IncomingMessage): ClientChallenge | ClientResponse | ChallengeError => {
     const body = (req as BodyIncomingMessage).body;
-    const userKey = body[userKeyProperty];
-    if (!userKey) {
+    const userId = body[userIdProperty];
+    if (!userId) {
       return new ChallengeError(
-        `The property ${userKeyProperty} does not contain the user's key`,
+        `The property ${userIdProperty} does not contain the user's key`,
         ChallengeStage.ClientChallenge
       );
     }
@@ -36,7 +31,7 @@ export const challengeByBase64Body = (
     if (challenge) {
       const sent = challenge as SignedChallenge;
       return {
-        key: Buffer.from(userKey as string, "base64"),
+        userId: userId as string,
         clientRequested: {
           message: Buffer.from(sent.message, "base64"),
           signature: Buffer.from(sent.signature, "base64"),
@@ -49,7 +44,7 @@ export const challengeByBase64Body = (
     if (response) {
       const sent = response as SignedChallenge;
       return {
-        key: Buffer.from(userKey as string, "base64"),
+        userId: userId as string,
         clientResponsed: {
           message: Buffer.from(sent.message, "base64"),
           signature: Buffer.from(sent.signature, "base64"),
@@ -78,10 +73,10 @@ enum ValueRegExIx {
 }
 
 export const challengeByBase64Header = (
-  keyFieldName = "key",
-  challengeFieldName = "challenge",
-  responseFieldName = "response"
-): GetChallengeOrResponseFunc => {
+  keyFieldName = "uid",
+  challengeFieldName = "cha",
+  responseFieldName = "res"
+): GetClientChallengeOrResponseFunc => {
   const MUTUAL_AUTH = "Mutual";
   const KEY_REGEX = new RegExp(`(${keyFieldName})=([A-Za-z0-9+/=]+)`, "i");
   const CHALLENGE_REGEX = new RegExp(
@@ -89,7 +84,7 @@ export const challengeByBase64Header = (
     "i"
   );
 
-  return (req: IncomingMessage): ChallengeOrResponse | ChallengeError => {
+  return (req: IncomingMessage): ClientChallenge | ClientResponse | ChallengeError => {
     const authHeader = req.headers["authorization"]?.trim();
     if (!authHeader?.startsWith(MUTUAL_AUTH)) {
       return new ChallengeError(
@@ -116,7 +111,7 @@ export const challengeByBase64Header = (
 
     if (challengeResult[ValueRegExIx.Challenge]) {
       return {
-        key: Buffer.from(keyResult[KeyRegExIx.Value], "base64"),
+        userId: keyResult[KeyRegExIx.Value],
         clientRequested: {
           message: Buffer.from(challengeResult[ValueRegExIx.Message], "base64"),
           signature: Buffer.from(challengeResult[ValueRegExIx.Signature], "base64"),
@@ -126,7 +121,7 @@ export const challengeByBase64Header = (
     }
 
     return {
-      key: Buffer.from(keyResult[KeyRegExIx.Value], "base64"),
+      userId: keyResult[KeyRegExIx.Value],
       clientResponsed: {
         message: Buffer.from(challengeResult[ValueRegExIx.Message], "base64"),
         signature: Buffer.from(challengeResult[ValueRegExIx.Signature], "base64"),
@@ -134,15 +129,3 @@ export const challengeByBase64Header = (
     };
   };
 };
-
-export function getDefaultOptions(): MutualKeyChallengeOptionalOptions {
-  return {
-    challengeOrResponseFunc: challengeByBase64Header(),
-    expireChallengeInSec: 120,
-    encrypt: {
-      hashAlgorithm: "sha256",
-      messagePadding: constants.RSA_PKCS1_OAEP_PADDING,
-      signaturePadding: constants.RSA_PKCS1_PADDING,
-    },
-  };
-}

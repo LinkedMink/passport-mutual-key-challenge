@@ -61,7 +61,58 @@
 				<a href="#passport-mutual-key-challenge" id="passport-mutual-key-challenge" style="color: inherit; text-decoration: none;">
 					<h1>passport-mutual-key-challenge</h1>
 				</a>
-				<p>Authenticate a user by their public key</p>
+				<p>This npm package implements a <a href="http://www.passportjs.org/">Passport</a> strategy to authenticate
+					a client by their public/private key pair. This method was primary meant to be used in an internal
+				environment not a public facing site where clients trust can be establish ahead of time.</p>
+				<p>The client starts authenticating by making a challenge request with a message encrypted by the
+					server&#39;s public key. The server tries to find the public key of the user making the request. If found,
+					it will decrypt and verify the signature as proof of it&#39;s identiy. The decrypted message is sent
+					back to the client with a encrypted, signed challenge issued by the server. Likewise, the client
+					will decrypt and verify, sending back the decrypted message. Both parties have verified each others
+				identiy, so the server can potentially issue a temporary token for subsequent request.</p>
+				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+					<h2>Getting Started</h2>
+				</a>
+				<p>Install the npm package</p>
+				<pre><code class="language-bash"><span style="color: #000000">npm install --save @linkedmink/passport-mutual-key-challenge</span>
+</code></pre>
+				<a href="#build" id="build" style="color: inherit; text-decoration: none;">
+					<h2>Build</h2>
+				</a>
+				<p>The project uses Yarn as a package manager. Make sure it&#39;s installed globally and install
+				dependency.</p>
+				<pre><code class="language-sh"><span style="color: #000000">npm install -g yarn</span>
+<span style="color: #000000">yarn</span>
+</code></pre>
+				<a href="#demo-program" id="demo-program" style="color: inherit; text-decoration: none;">
+					<h2>Demo Program</h2>
+				</a>
+				<p>The <a href="demo/App.ts">demo program</a> demonstrates how to use the strategy to do an initial
+					handshake. Both the client and server have a public/private key pair, so you will need
+				to generate the keys</p>
+				<pre><code class="language-sh"><span style="color: #008000"># Generate the server key</span>
+<span style="color: #000000">ssh-keygen -t rsa -b 4096 -m PEM -f server.key</span>
+<span style="color: #000000">openssl rsa -in server.key -pubout -outform PEM -out server.key.pub</span>
+<span style="color: #008000"># Generate the client key</span>
+<span style="color: #000000">ssh-keygen -t rsa -b 4096 -m PEM -f client.key</span>
+<span style="color: #000000">openssl rsa -in client.key -pubout -outform PEM -out client.key.pub</span>
+<span style="color: #008000"># Move to demo root folder</span>
+<span style="color: #000000">mv ./*.key* ./demo</span>
+</code></pre>
+				<p>The <a href="demo/App.ts">demo server</a> uses the mutual authentication to do the initial handshake, using
+					<em>server.key</em> as its private key. The users are mocked by loading a fixed <em>client.key.pub</em> file as
+					the user&#39;s public key. If the handshake is successful, a JWT is issued for subsequent request.
+				The server has two endpoints:</p>
+				<ul>
+					<li>POST /authenticate : A route that accepts a challenge messge in the request body.</li>
+					<li>GET /protected : A route protected by JWT that just echos back the decoded JWT.<pre><code><span style="color: #001080">yarn</span><span style="color: #000000"> </span><span style="color: #001080">start</span>
+</code></pre>
+					</li>
+				</ul>
+				<p>The <a href="demo/Client.ts">demo client</a> does a handshake with the server using the opposite keys and
+				outputs the result of the <strong>/protected</strong> endpoint on success:</p>
+				<pre><code><span style="color: #001080">yarn</span><span style="color: #000000"> </span><span style="color: #001080">run</span><span style="color: #000000"> </span><span style="color: #001080">startClient</span>
+</code></pre>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -71,20 +122,35 @@
 						<a href="modules.html">Exports</a>
 					</li>
 					<li class=" tsd-kind-namespace">
-						<a href="modules/optionfuncs.html">Option<wbr>Funcs</a>
-					</li>
-					<li class=" tsd-kind-namespace">
 						<a href="modules/types.html">Types</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="classes/localchallengecache.html" class="tsd-kind-icon">Local<wbr>Challenge<wbr>Cache</a>
+					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/mutualkeychallengestrategy.html" class="tsd-kind-icon">Mutual<wbr>Key<wbr>Challenge<wbr>Strategy</a>
 					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/cryptographyoptions.html" class="tsd-kind-icon">Cryptography<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#mutualkeychallengeauthoptions" class="tsd-kind-icon">Mutual<wbr>Key<wbr>Challenge<wbr>Auth<wbr>Options</a>
+					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="modules.html#mutualkeychallengeoptions" class="tsd-kind-icon">Mutual<wbr>Key<wbr>Challenge<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#challengebybase64body" class="tsd-kind-icon">challenge<wbr>ByBase64<wbr>Body</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#challengebybase64header" class="tsd-kind-icon">challenge<wbr>ByBase64<wbr>Header</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#getdefaultoptions" class="tsd-kind-icon">get<wbr>Default<wbr>Options</a>
 					</li>
 				</ul>
 			</nav>
@@ -96,11 +162,15 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 		</div>
 	</div>

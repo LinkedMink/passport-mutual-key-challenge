@@ -9,12 +9,14 @@ import {
   VerifiedCallback,
 } from "passport-jwt";
 
+export const REALM = "api.local"
+
 export const JWT_PRIVATE_KEY = fs.readFileSync("server.key");
 
 export const JWT_OPTIONS = {
-  expiresIn: "2 days",
-  audience: "api.local",
-  issuer: "auth.local",
+  expiresIn: "12 h",
+  audience: REALM,
+  issuer: "auth.api.local",
   algorithm: "RS256",
 } as SignOptions;
 
