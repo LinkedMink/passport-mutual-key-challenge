@@ -1,0 +1,40 @@
+{
+  "name": "@linkedmink/passport-mutual-key-challenge-client",
+  "version": "0.1.1",
+  "description": "Implements funtions to make a handshake with servers using @linkedmink/passport-mutual-key-challenge",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "author": {
+    "name": "Harlan Sang",
+    "email": "harlan@linkedmink.space"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LinkedMink/passport-mutual-key-challenge"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "scripts": {
+    "build": "tsc --project ./tsconfig.json",
+    "test": "jest",
+    "lint": "eslint -c ../../.eslintrc.js --ext .ts src",
+    "format": "prettier --write src/**/*.ts tests/**/*.ts *.js *.json",
+    "doc": "typedoc",
+    "prepublishOnly": "yarn run build"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.20",
+    "@types/node": "^14.14.27",
+    "@typescript-eslint/eslint-plugin": "^4.15.0",
+    "@typescript-eslint/parser": "^4.15.0",
+    "eslint": "^7.19.0",
+    "eslint-config-prettier": "^7.2.0",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1",
+    "ts-jest": "^26.5.0",
+    "typedoc": "^0.20.23",
+    "typescript": "^4.1.3"
+  }
+}

@@ -24,10 +24,10 @@ export interface ChallengeCache {
    * @param key The key to retrieve
    * @return The cached challenge or null if the key is expired or does not exist
    */
-  get(key: string): CachedChallenge | null;
+  get(key: string): CachedChallenge | null | Promise<CachedChallenge | null>;
   /**
    * @param key The key to save
    * @param value The value to save
    */
-  set(key: string, value: CachedChallenge): void;
+  set(key: string, value: CachedChallenge): void | Promise<void>;
 }

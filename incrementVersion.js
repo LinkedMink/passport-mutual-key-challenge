@@ -3,7 +3,12 @@
 // Config Section - TODO make command line args
 const INCREMENT_POS = "patch";
 const INCREMENT_BY = 1;
-const PACKAGE_FILES = ["package.json", "demo/package.json"];
+const PACKAGE_FILES = [
+  "package.json",
+  "src/package.json",
+  "lib/client/package.json",
+  "lib/server/package.json"
+];
 
 const fs = require("fs");
 

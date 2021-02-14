@@ -2,7 +2,6 @@ import { Types } from "@linkedmink/passport-mutual-key-challenge";
 import { NextFunction, Router, Request, Response, RequestHandler } from "express";
 import { sign } from "jsonwebtoken";
 import passport from "passport";
-import { ServerChallenge } from "../../dist/Types";
 import { JWT_OPTIONS, JWT_PRIVATE_KEY, REALM } from "./PassportJwt";
 import { MockUser, PASSPORT_MUTUAL_STRATEGY } from "./PassportMutual";
 
@@ -15,7 +14,7 @@ authenticateRouter.post("/", (req: Request, res: Response, next: NextFunction) =
     (
       authError: Types.ChallengeError,
       user: MockUser,
-      challenge: ServerChallenge,
+      challenge: Types.ServerChallenge,
       status: number
     ) => {
       if (challenge && status) {

@@ -51,7 +51,8 @@ export class MutualKeyChallengeStrategy<T = unknown> extends Strategy {
       );
     }
 
-    const challenge = this.options.challengeCache.get(message.userId);
+    const challengeGet = this.options.challengeCache.get(message.userId);
+    const challenge = isPromise(challengeGet) ? await challengeGet : challengeGet;
     if (!challenge) {
       return this.error(
         new ChallengeError("Challenge is not initiated or expired", ChallengeStage.ServerChallenge)
@@ -85,11 +86,14 @@ export class MutualKeyChallengeStrategy<T = unknown> extends Strategy {
     const nonce = this.verifier.getNonce();
     const nonceMessage = await this.verifier.encryptAndSign(user.publicKey, nonce);
 
-    this.options.challengeCache.set(message.userId, {
+    const challengeSet = this.options.challengeCache.set(message.userId, {
       userId: message.userId,
       clientChallenged: nonce,
       requestDateTime: message.requestDateTime,
     });
+    if (isPromise(challengeSet)) {
+      await challengeSet;
+    }
 
     const challenge = {
       clientRequested: decryptedMessage,
