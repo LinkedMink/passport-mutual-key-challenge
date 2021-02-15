@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@linkedmink/passport-mutual-key-challenge": "0.1.1",
+    "@linkedmink/passport-mutual-key-challenge-client": "0.1.1",
     "express": "^4.17.1",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0"

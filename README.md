@@ -55,3 +55,23 @@ outputs the result of the **/protected** endpoint on success:
 # Run through a handshake
 yarn run startClient
 ```
+
+### Distributed Systems
+By default the the strategy uses a local memory cache to store pending challenges. This won't work
+if request are load balanced across multiple instances since a request may arrive on a different
+instance without the cached challenge.
+
+You can implement the [CachedChallenge](lib/server/Types/ChallengeCache.ts) interface and provide
+that as an option.
+
+```TypeScript
+new MutualKeyChallengeStrategy({
+  serverKey: myPrivateKey,
+  userFunc: getUser,
+  challengeOrResponseFunc: challengeByBase64Body("userId", "challenge", "response"),
+  challengeCache: new MyCustomChallengeCache(),
+})
+```
+
+See [node-user-service](https://github.com/LinkedMink/node-user-service/blob/master/src/middleware/PassportMutual.ts)
+for an example using Redis.

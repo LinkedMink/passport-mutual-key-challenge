@@ -19,7 +19,7 @@
   "scripts": {
     "build": "tsc --project ./tsconfig.json",
     "test": "jest",
-    "lint": "eslint -c ../../.eslintrc.js --ext .ts src",
+    "lint": "eslint -c .eslintrc.js --ext .ts src",
     "format": "prettier --write src/**/*.ts tests/**/*.ts *.js *.json",
     "doc": "typedoc",
     "prepublishOnly": "yarn run build"
