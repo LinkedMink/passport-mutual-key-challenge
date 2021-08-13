@@ -3,7 +3,13 @@ import http, { IncomingMessage } from "http";
 import https from "https";
 import { getDefaultOptions } from "./DefaultFuncs";
 import { isKeyObject } from "./TypeCheck";
-import { CryptographyOptions, HandshakeRequestOptions, MutualAuthOptions, RequestData, ServerChallenge } from "./Types";
+import {
+  CryptographyOptions,
+  HandshakeRequestOptions,
+  MutualAuthOptions,
+  RequestData,
+  ServerChallenge,
+} from "./Types";
 
 export class HandshakeClient {
   private readonly options: MutualAuthOptions;
@@ -23,7 +29,6 @@ export class HandshakeClient {
     clientKey: KeyLike,
     serverKey: KeyLike
   ): Promise<Buffer> => {
-
     const clientKeyObj = isKeyObject(clientKey) ? clientKey : crypto.createPrivateKey(clientKey);
     const serverKeyObj = isKeyObject(serverKey) ? serverKey : crypto.createPublicKey(serverKey);
 
@@ -101,7 +106,7 @@ export class HandshakeClient {
     isSslRequest?: boolean,
     extractFunc?: (res: IncomingMessage, body: Buffer) => TResult
   ) {
-    const client = isSslRequest ? https : http
+    const client = isSslRequest ? https : http;
     return new Promise<TResult | Buffer>((resolve, reject) => {
       const request = client.request(data.options, response => {
         const data: Buffer[] = [];

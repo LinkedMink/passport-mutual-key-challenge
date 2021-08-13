@@ -82,9 +82,8 @@ export type MutualKeyChallengeOptions<TUser = unknown> = MutualKeyChallengeRequi
 /**
  * The options resolved with the default values not provided by MutualKeyChallengeOptions
  */
-export type MutualKeyChallengeResolvedOptions<
-  TUser = unknown
-> = MutualKeyChallengeRequiredOptions<TUser> & MutualKeyChallengeOptionalOptions;
+export type MutualKeyChallengeResolvedOptions<TUser = unknown> =
+  MutualKeyChallengeRequiredOptions<TUser> & MutualKeyChallengeOptionalOptions;
 
 /**
  * @return The default values for MutualKeyChallengeOptions

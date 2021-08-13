@@ -13,9 +13,9 @@ interface SignedChallenge {
 }
 
 export const challengeByBase64Body = (
-  userIdProperty: 'userId',
-  challengeProperty: 'challenge',
-  responseProperty = 'response'
+  userIdProperty: "userId",
+  challengeProperty: "challenge",
+  responseProperty = "response"
 ): GetClientChallengeOrResponseFunc => {
   return (req: IncomingMessage): ClientChallenge | ClientResponse | ChallengeError => {
     const body = (req as BodyIncomingMessage).body;

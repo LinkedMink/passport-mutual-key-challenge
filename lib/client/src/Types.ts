@@ -72,10 +72,10 @@ export interface CryptographyOptions {
 }
 
 export interface HandshakeRequestOptions {
-  host: string
-  port?: number
-  path?: string
-  isSslRequest: boolean
+  host: string;
+  port?: number;
+  path?: string;
+  isSslRequest: boolean;
 }
 
 export type RequestSignedMessageFunc = (

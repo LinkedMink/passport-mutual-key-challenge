@@ -1,6 +1,6 @@
 {
   "name": "@linkedmink/passport-mutual-key-challenge-workspace",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Implements a Passport strategy to authenticate the public key of a user by issuing a dynamic generated challenge",
   "license": "MIT",
   "author": {
