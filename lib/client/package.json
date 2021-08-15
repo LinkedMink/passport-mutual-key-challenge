@@ -1,6 +1,6 @@
 {
   "name": "@linkedmink/passport-mutual-key-challenge-client",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Implements funtions to make a handshake with servers using @linkedmink/passport-mutual-key-challenge",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

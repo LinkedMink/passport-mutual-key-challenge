@@ -1,6 +1,6 @@
 {
   "name": "@linkedmink/passport-mutual-key-challenge-demo",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Demo App",
   "main": "dist/CliSampleApp.js",
   "license": "MIT",
@@ -20,8 +20,8 @@
     "format": "prettier --write ./**/*.ts"
   },
   "dependencies": {
-    "@linkedmink/passport-mutual-key-challenge": "0.1.3",
-    "@linkedmink/passport-mutual-key-challenge-client": "0.1.3",
+    "@linkedmink/passport-mutual-key-challenge": "0.1.4",
+    "@linkedmink/passport-mutual-key-challenge-client": "0.1.4",
     "express": "^4.17.1",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0"
