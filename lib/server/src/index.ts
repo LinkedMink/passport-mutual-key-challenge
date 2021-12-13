@@ -1,10 +1,14 @@
-export * as Types from "./Types";
 export { LocalChallengeCache } from "./LocalChallengeCache";
+export { MessageVerifier } from "./MessageVerifier";
 export {
   CryptographyOptions,
   getDefaultOptions,
-  MutualKeyChallengeOptions,
   MutualKeyChallengeAuthOptions,
+  MutualKeyChallengeOptionalOptions,
+  MutualKeyChallengeOptions,
+  MutualKeyChallengeRequiredOptions,
+  MutualKeyChallengeResolvedOptions,
 } from "./MutualKeyChallengeOptions";
 export { MutualKeyChallengeStrategy } from "./MutualKeyChallengeStrategy";
 export { challengeByBase64Body, challengeByBase64Header } from "./RequestFuncs";
+export * as Types from "./Types";

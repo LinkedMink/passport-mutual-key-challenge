@@ -64,7 +64,7 @@ outputs the result of the **/protected** endpoint on success:
 
 ```sh
 # Run through a handshake
-yarn run startClient
+yarn run start:client
 ```
 
 ### Distributed Systems

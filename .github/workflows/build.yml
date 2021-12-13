@@ -24,7 +24,7 @@ jobs:
         node-version: '16'
         # cache: 'yarn'
     - name: Install
-      run: yarn install --immutable
+      run: yarn install --immutable --inline-builds
     - name: Build
       run: yarn build
     - name: Lint
@@ -42,4 +42,4 @@ jobs:
       with:
         name: linkedmink-passport-mutual-key-challenge
         path: |
-          lib/linkedmink-passport-mutual-key-challenge*.tgz
+          lib/{client,server}/linkedmink-passport-mutual-key-challenge*.tgz

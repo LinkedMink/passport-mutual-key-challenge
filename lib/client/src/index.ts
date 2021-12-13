@@ -1,11 +1,13 @@
-export { formatAsBase64Json, extractByBase64Json, getDefaultOptions } from "./DefaultFuncs";
+export { extractByBase64Json, formatAsBase64Json, getDefaultOptions } from "./DefaultFuncs";
 export { HandshakeClient } from "./HandshakeClient";
 export {
-  RequestData,
-  SignedMessage,
   ClientSignedMessage,
-  ServerChallenge,
   CryptographyOptions,
-  RequestSignedMessageFunc,
   ExtractServerChallengeFunc,
+  HandshakeRequestOptions,
+  MutualAuthOptions,
+  RequestData,
+  RequestSignedMessageFunc,
+  ServerChallenge,
+  SignedMessage,
 } from "./Types";

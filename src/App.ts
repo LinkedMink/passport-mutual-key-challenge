@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import bodyParser from "body-parser";
 import express, { Request, Response } from "express";
 import passport from "passport";
 
@@ -11,7 +10,7 @@ import { addMutualStrategy } from "./Shared/PassportMutual";
 
 const app = express();
 
-app.use(bodyParser.json());
+app.use(express.json());
 
 addJwtStrategy(passport);
 addMutualStrategy(passport);

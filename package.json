@@ -2,6 +2,12 @@
   "name": "@linkedmink/passport-mutual-key-challenge-workspace",
   "version": "0.1.6",
   "description": "Implements a Passport strategy to authenticate the public key of a user by issuing a dynamic generated challenge",
+  "keywords": [
+    "authentication",
+    "passport",
+    "mutual",
+    "distributed"
+  ],
   "license": "MIT",
   "author": {
     "name": "Harlan Sang",
@@ -12,11 +18,11 @@
     "url": "https://github.com/LinkedMink/passport-mutual-key-challenge"
   },
   "scripts": {
-    "build": "yarn workspaces foreach --topological-dev --parallel run build",
-    "test": "yarn workspaces foreach --parallel --from 'lib/{client,server}' run test",
-    "lint": "yarn workspaces foreach --parallel --from 'lib/{client,server}' run lint",
-    "doc": "yarn workspaces foreach --parallel --from 'lib/{client,server}' run doc",
-    "pack:all": "yarn workspaces foreach --parallel run npm:pack",
+    "build": "yarn workspaces foreach --topological-dev --parallel --verbose run build",
+    "test": "yarn workspaces foreach --parallel --verbose --include '@linkedmink/passport-mutual-key-challenge{,-client}' run test",
+    "lint": "yarn workspaces foreach --parallel --verbose --include '@linkedmink/passport-mutual-key-challenge{,-client}' run lint",
+    "doc": "yarn workspaces foreach --parallel --verbose --include '@linkedmink/passport-mutual-key-challenge{,-client}' run doc",
+    "pack:all": "yarn workspaces foreach --parallel --verbose --include '@linkedmink/passport-mutual-key-challenge{,-client}' run npm:pack",
     "publish:all": "node incrementVersion.js && yarn workspace @linkedmink/passport-mutual-key-challenge npm publish --access public"
   },
   "private": true,

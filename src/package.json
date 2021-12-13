@@ -15,10 +15,9 @@
   "private": true,
   "scripts": {
     "start": "ts-node-dev --inspect=0.0.0.0:9229 --respawn --transpile-only ./App.ts",
-    "startClient": "ts-node-dev --inspect=0.0.0.0:9228 --respawn --transpile-only ./Client.ts",
+    "start:client": "ts-node-dev --inspect=0.0.0.0:9228 --respawn --transpile-only ./Client.ts",
     "build": "tsc",
-    "lint": "eslint ./Shared/*.ts ./*.ts",
-    "format": "prettier --write ./**/*.ts"
+    "lint": "eslint ./Shared/*.ts ./*.ts"
   },
   "dependencies": {
     "@linkedmink/passport-mutual-key-challenge": "0.1.6",

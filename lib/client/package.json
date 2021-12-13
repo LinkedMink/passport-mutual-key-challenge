@@ -2,6 +2,12 @@
   "name": "@linkedmink/passport-mutual-key-challenge-client",
   "version": "0.1.6",
   "description": "Implements funtions to make a handshake with servers using @linkedmink/passport-mutual-key-challenge",
+  "keywords": [
+    "authentication",
+    "passport",
+    "mutual",
+    "distributed"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
@@ -20,9 +26,8 @@
     "build": "tsc",
     "test": "jest",
     "lint": "eslint --ext .ts src",
-    "format": "prettier --write src/**/*.ts tests/**/*.ts *.js *.json",
     "doc": "typedoc",
-    "prepublishOnly": "yarn run build"
+    "npm:pack": "npm pack"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.2",

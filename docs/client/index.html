@@ -1,206 +1,61 @@
-<!doctype html>
-<html class="default no-js">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@linkedmink/passport-mutual-key-challenge-client</title>
-	<meta name="description" content="Documentation for @linkedmink/passport-mutual-key-challenge-client">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/main.css">
-	<script async src="assets/js/search.js" id="search-script"></script>
-</head>
-<body>
-<header>
-	<div class="tsd-page-toolbar">
-		<div class="container">
-			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
-					<div class="field">
-						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
-						<input id="tsd-search-field" type="text" />
-					</div>
-					<ul class="results">
-						<li class="state loading">Preparing search index...</li>
-						<li class="state failure">The search index is not available</li>
-					</ul>
-					<a href="index.html" class="title">@linkedmink/passport-mutual-key-challenge-client</a>
-				</div>
-				<div class="table-cell" id="tsd-widgets">
-					<div id="tsd-filter">
-						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
-						<div class="tsd-filter-group">
-							<div class="tsd-select" id="tsd-filter-visibility">
-								<span class="tsd-select-label">All</span>
-								<ul class="tsd-select-list">
-									<li data-value="public">Public</li>
-									<li data-value="protected">Public/Protected</li>
-									<li data-value="private" class="selected">All</li>
-								</ul>
-							</div>
-							<input type="checkbox" id="tsd-filter-inherited" checked />
-							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-						</div>
-					</div>
-					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="tsd-page-title">
-		<div class="container">
-			<h1>@linkedmink/passport-mutual-key-challenge-client</h1>
-		</div>
-	</div>
-</header>
-<div class="container container-main">
-	<div class="row">
-		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<a href="#passport-mutual-key-challenge" id="passport-mutual-key-challenge" style="color: inherit; text-decoration: none;">
-					<h1>passport-mutual-key-challenge</h1>
-				</a>
-				<p>This npm package implements a <a href="http://www.passportjs.org/">Passport</a> strategy to authenticate
-					a client by their public/private key pair. This method was primarily meant to be used in an internal
-				environment, not a public facing site, where clients trust can be establish ahead of time.</p>
-				<p>The client starts authenticating by making a challenge request with a message encrypted by the
-					server&#39;s public key. The server tries to find the public key of the user making the request. If found,
-					it will decrypt and verify the signature as proof of its identiy. The decrypted message is sent
-					back to the client with a encrypted, signed challenge issued by the server. Likewise, the client
-					will decrypt and verify, sending back the decrypted message. Both parties have verified each others
-				identiy and the handshake is complete.</p>
-				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
-					<h2>Getting Started</h2>
-				</a>
-				<p>Install the npm package</p>
-				<pre><code class="language-bash"><span style="color: #000000">npm install --save @linkedmink/passport-mutual-key-challenge</span>
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@linkedmink/passport-mutual-key-challenge-client</title><meta name="description" content="Documentation for @linkedmink/passport-mutual-key-challenge-client"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">@linkedmink/passport-mutual-key-challenge-client</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>@linkedmink/passport-mutual-key-challenge-client</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<a href="#passport-mutual-key-challenge" id="passport-mutual-key-challenge" style="color: inherit; text-decoration: none;">
+  <h1>passport-mutual-key-challenge</h1>
+</a>
+<p><img src="https://github.com/LinkedMink/passport-mutual-key-challenge/actions/workflows/build-main.yml/badge.svg" alt="Build State"></p>
+<p>This npm package implements a <a href="http://www.passportjs.org/">Passport</a> strategy to authenticate
+a client by their public/private key pair. This method was primarily meant to be used in an internal
+environment, not a public facing site, where clients trust can be establish ahead of time.</p>
+<p>The client starts authenticating by making a challenge request with a message encrypted by the
+server&#39;s public key. The server tries to find the public key of the user making the request. If found,
+it will decrypt and verify the signature as proof of its identiy. The decrypted message is sent
+back to the client with a encrypted, signed challenge issued by the server. Likewise, the client
+will decrypt and verify, sending back the decrypted message. Both parties have verified each others
+identiy and the handshake is complete.</p>
+
+<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+  <h2>Getting Started</h2>
+</a>
+<p>Install the npm package</p>
+<pre><code class="language-bash"><span class="hl-0">npm install --save @linkedmink/passport-mutual-key-challenge</span>
 </code></pre>
-				<a href="#demo-program" id="demo-program" style="color: inherit; text-decoration: none;">
-					<h3>Demo Program</h3>
-				</a>
-				<p>The <a href="src">demo programs</a> demonstrates how to use the strategy to do an initial handshake. Both
-				the client and server have a public/private key pair, so you will need to generate the keys</p>
-				<pre><code class="language-sh"><span style="color: #008000"># Generate the server key</span>
-<span style="color: #000000">ssh-keygen -t rsa -b 4096 -m PEM -f server.key</span>
-<span style="color: #000000">openssl rsa -in server.key -pubout -outform PEM -out server.key.pub</span>
-<span style="color: #008000"># Generate the client key</span>
-<span style="color: #000000">ssh-keygen -t rsa -b 4096 -m PEM -f client.key</span>
-<span style="color: #000000">openssl rsa -in client.key -pubout -outform PEM -out client.key.pub</span>
-<span style="color: #008000"># Move keys to demo root folder</span>
-<span style="color: #000000">mv ./*.key* ./src</span>
+
+<a href="#demo-program" id="demo-program" style="color: inherit; text-decoration: none;">
+  <h3>Demo Program</h3>
+</a>
+<p>The <a href="src">demo programs</a> demonstrates how to use the strategy to do an initial handshake. Both
+the client and server have a public/private key pair, so you will need to generate the keys</p>
+<pre><code class="language-sh"><span class="hl-1"># Generate the server key</span><br/><span class="hl-0">ssh-keygen -t rsa -b 4096 -m PEM -f server.key</span><br/><span class="hl-0">openssl rsa -in server.key -pubout -outform PEM -out server.key.pub</span><br/><span class="hl-1"># Generate the client key</span><br/><span class="hl-0">ssh-keygen -t rsa -b 4096 -m PEM -f client.key</span><br/><span class="hl-0">openssl rsa -in client.key -pubout -outform PEM -out client.key.pub</span><br/><span class="hl-1"># Move keys to demo root folder</span><br/><span class="hl-0">mv ./*.key* ./src</span>
 </code></pre>
-				<p>The project uses Yarn as a package manager. Make sure it&#39;s installed globally and install
-				dependency.</p>
-				<pre><code class="language-sh"><span style="color: #000000">npm install -g yarn</span>
-<span style="color: #000000">yarn install</span>
+<p>The project uses Yarn as a package manager. Make sure it&#39;s installed globally and install
+dependency.</p>
+<pre><code class="language-sh"><span class="hl-0">npm install -g yarn</span><br/><span class="hl-0">yarn install</span>
 </code></pre>
-				<p>The <a href="src/App.ts">demo server</a> passport mutual authentication to do the initial handshake, using
-					<em>server.key</em> as its private key. The users are mocked by loading a fixed <em>client.key.pub</em> file as
-					the user&#39;s public key. If the handshake is successful, a JWT is issued for subsequent request.
-				The server has two endpoints:</p>
-				<ul>
-					<li>POST /authenticate : A route that accepts a challenge messge in the request body.</li>
-					<li>GET /protected : A route protected by JWT that just echos back the decoded JWT.<pre><code class="language-sh"><span style="color: #008000"># Start the demo server</span>
-<span style="color: #795E26">cd</span><span style="color: #000000"> ./src</span>
-<span style="color: #000000">yarn start</span>
+<p>The <a href="src/App.ts">demo server</a> passport mutual authentication to do the initial handshake, using
+<em>server.key</em> as its private key. The users are mocked by loading a fixed <em>client.key.pub</em> file as
+the user&#39;s public key. If the handshake is successful, a JWT is issued for subsequent request.
+The server has two endpoints:</p>
+<ul>
+<li>POST /authenticate : A route that accepts a challenge messge in the request body.</li>
+<li>GET /protected : A route protected by JWT that just echos back the decoded JWT.</li>
+</ul>
+<pre><code class="language-sh"><span class="hl-1"># Start the demo server</span><br/><span class="hl-2">cd</span><span class="hl-0"> ./src</span><br/><span class="hl-0">yarn start</span>
 </code></pre>
-					</li>
-				</ul>
-				<p>The <a href="src/Client.ts">demo client</a> does a handshake with the server using the opposite keys and
-				outputs the result of the <strong>/protected</strong> endpoint on success:</p>
-				<pre><code class="language-sh"><span style="color: #008000"># Run through a handshake</span>
-<span style="color: #000000">yarn run startClient</span>
+<p>The <a href="src/Client.ts">demo client</a> does a handshake with the server using the opposite keys and
+outputs the result of the <strong>/protected</strong> endpoint on success:</p>
+<pre><code class="language-sh"><span class="hl-1"># Run through a handshake</span><br/><span class="hl-0">yarn run start:client</span>
 </code></pre>
-				<a href="#distributed-systems" id="distributed-systems" style="color: inherit; text-decoration: none;">
-					<h3>Distributed Systems</h3>
-				</a>
-				<p>By default the the strategy uses a local memory cache to store pending challenges. This won&#39;t work
-					if request are load balanced across multiple instances since a request may arrive on a different
-				instance without the cached challenge.</p>
-				<p>You can implement the <a href="lib/server/Types/ChallengeCache.ts">CachedChallenge</a> interface and provide
-				that as an option.</p>
-				<pre><code class="language-TypeScript"><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MutualKeyChallengeStrategy</span><span style="color: #000000">({</span>
-<span style="color: #000000">  </span><span style="color: #001080">serverKey:</span><span style="color: #000000"> </span><span style="color: #001080">myPrivateKey</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">userFunc:</span><span style="color: #000000"> </span><span style="color: #001080">getUser</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">challengeOrResponseFunc:</span><span style="color: #000000"> </span><span style="color: #795E26">challengeByBase64Body</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;userId&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;challenge&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;response&quot;</span><span style="color: #000000">),</span>
-<span style="color: #000000">  </span><span style="color: #001080">challengeCache:</span><span style="color: #000000"> </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MyCustomChallengeCache</span><span style="color: #000000">(),</span>
-<span style="color: #000000">})</span>
+
+<a href="#distributed-systems" id="distributed-systems" style="color: inherit; text-decoration: none;">
+  <h3>Distributed Systems</h3>
+</a>
+<p>By default the the strategy uses a local memory cache to store pending challenges. This won&#39;t work
+if request are load balanced across multiple instances since a request may arrive on a different
+instance without the cached challenge.</p>
+<p>You can implement the <a href="lib/server/Types/ChallengeCache.ts">CachedChallenge</a> interface and provide
+that as an option.</p>
+<pre><code class="language-TypeScript"><span class="hl-3">new</span><span class="hl-0"> </span><span class="hl-2">MutualKeyChallengeStrategy</span><span class="hl-0">({</span><br/><span class="hl-0">  </span><span class="hl-4">serverKey:</span><span class="hl-0"> </span><span class="hl-4">myPrivateKey</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-4">userFunc:</span><span class="hl-0"> </span><span class="hl-4">getUser</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-4">challengeOrResponseFunc:</span><span class="hl-0"> </span><span class="hl-2">challengeByBase64Body</span><span class="hl-0">(</span><span class="hl-5">&quot;userId&quot;</span><span class="hl-0">, </span><span class="hl-5">&quot;challenge&quot;</span><span class="hl-0">, </span><span class="hl-5">&quot;response&quot;</span><span class="hl-0">),</span><br/><span class="hl-0">  </span><span class="hl-4">challengeCache:</span><span class="hl-0"> </span><span class="hl-3">new</span><span class="hl-0"> </span><span class="hl-2">MyCustomChallengeCache</span><span class="hl-0">(),</span><br/><span class="hl-0">})</span>
 </code></pre>
-				<p>See <a href="https://github.com/LinkedMink/node-user-service/blob/master/src/middleware/PassportMutual.ts">node-user-service</a>
-				for an example using Redis.</p>
-			</div>
-		</div>
-		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation primary">
-				<ul>
-					<li class=" ">
-						<a href="modules.html">Exports</a>
-					</li>
-				</ul>
-			</nav>
-			<nav class="tsd-navigation secondary menu-sticky">
-				<ul class="before-current">
-					<li class=" tsd-kind-class">
-						<a href="classes/HandshakeClient.html" class="tsd-kind-icon">Handshake<wbr>Client</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/ClientSignedMessage.html" class="tsd-kind-icon">Client<wbr>Signed<wbr>Message</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/CryptographyOptions.html" class="tsd-kind-icon">Cryptography<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/RequestData.html" class="tsd-kind-icon">Request<wbr>Data</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/ServerChallenge.html" class="tsd-kind-icon">Server<wbr>Challenge</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/SignedMessage.html" class="tsd-kind-icon">Signed<wbr>Message</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#ExtractServerChallengeFunc" class="tsd-kind-icon">Extract<wbr>Server<wbr>Challenge<wbr>Func</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#RequestSignedMessageFunc" class="tsd-kind-icon">Request<wbr>Signed<wbr>Message<wbr>Func</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#extractByBase64Json" class="tsd-kind-icon">extract<wbr>ByBase64<wbr>Json</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#formatAsBase64Json" class="tsd-kind-icon">format<wbr>AsBase64<wbr>Json</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#getDefaultOptions" class="tsd-kind-icon">get<wbr>Default<wbr>Options</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div>
-</div>
-<footer class="with-border-bottom">
-	<div class="container">
-		<h2>Legend</h2>
-		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
-<div class="overlay"></div>
-<script src="assets/js/main.js"></script>
-</body>
-</html>
+<p>See <a href="https://github.com/LinkedMink/node-user-service/blob/master/src/middleware/PassportMutual.ts">node-user-service</a>
+for an example using Redis.</p>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-class"><a href="classes/HandshakeClient.html" class="tsd-kind-icon">Handshake<wbr/>Client</a></li><li class="tsd-kind-interface"><a href="interfaces/ClientSignedMessage.html" class="tsd-kind-icon">Client<wbr/>Signed<wbr/>Message</a></li><li class="tsd-kind-interface"><a href="interfaces/CryptographyOptions.html" class="tsd-kind-icon">Cryptography<wbr/>Options</a></li><li class="tsd-kind-interface"><a href="interfaces/HandshakeRequestOptions.html" class="tsd-kind-icon">Handshake<wbr/>Request<wbr/>Options</a></li><li class="tsd-kind-interface"><a href="interfaces/MutualAuthOptions.html" class="tsd-kind-icon">Mutual<wbr/>Auth<wbr/>Options</a></li><li class="tsd-kind-interface"><a href="interfaces/RequestData.html" class="tsd-kind-icon">Request<wbr/>Data</a></li><li class="tsd-kind-interface"><a href="interfaces/ServerChallenge.html" class="tsd-kind-icon">Server<wbr/>Challenge</a></li><li class="tsd-kind-interface"><a href="interfaces/SignedMessage.html" class="tsd-kind-icon">Signed<wbr/>Message</a></li><li class="tsd-kind-type-alias"><a href="modules.html#ExtractServerChallengeFunc" class="tsd-kind-icon">Extract<wbr/>Server<wbr/>Challenge<wbr/>Func</a></li><li class="tsd-kind-type-alias"><a href="modules.html#RequestSignedMessageFunc" class="tsd-kind-icon">Request<wbr/>Signed<wbr/>Message<wbr/>Func</a></li><li class="tsd-kind-function"><a href="modules.html#extractByBase64Json" class="tsd-kind-icon">extract<wbr/>By<wbr/>Base64<wbr/>Json</a></li><li class="tsd-kind-function"><a href="modules.html#formatAsBase64Json" class="tsd-kind-icon">format<wbr/>As<wbr/>Base64<wbr/>Json</a></li><li class="tsd-kind-function"><a href="modules.html#getDefaultOptions" class="tsd-kind-icon">get<wbr/>Default<wbr/>Options</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
