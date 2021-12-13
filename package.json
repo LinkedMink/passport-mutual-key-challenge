@@ -17,7 +17,7 @@
     "lint": "yarn workspaces foreach --parallel --from 'lib/{client,server}' run lint",
     "doc": "yarn workspaces foreach --parallel --from 'lib/{client,server}' run doc",
     "pack:all": "yarn workspaces foreach --parallel run npm:pack",
-    "publish:all": "node incrementVersion.js && cd lib/server && npm publish --access public"
+    "publish:all": "node incrementVersion.js && yarn workspace @linkedmink/passport-mutual-key-challenge npm publish --access public"
   },
   "private": true,
   "workspaces": [
