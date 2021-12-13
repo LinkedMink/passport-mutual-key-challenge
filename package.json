@@ -18,7 +18,7 @@
     "url": "https://github.com/LinkedMink/passport-mutual-key-challenge"
   },
   "scripts": {
-    "build": "yarn workspaces foreach --topological-dev --parallel --verbose run build",
+    "build": "yarn workspaces foreach --topological-dev --parallel --verbose --include '@linkedmink/passport-mutual-key-challenge{,-client}' run build",
     "test": "yarn workspaces foreach --parallel --verbose --include '@linkedmink/passport-mutual-key-challenge{,-client}' run test",
     "lint": "yarn workspaces foreach --parallel --verbose --include '@linkedmink/passport-mutual-key-challenge{,-client}' run lint",
     "doc": "yarn workspaces foreach --parallel --verbose --include '@linkedmink/passport-mutual-key-challenge{,-client}' run doc",
