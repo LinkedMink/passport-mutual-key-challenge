@@ -1,0 +1,24 @@
+name: Publish Tag
+concurrency: 
+  group: publish
+  cancel-in-progress: true
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    uses: LinkedMink/passport-mutual-key-challenge/.github/workflows/build.yml@main
+    with:
+      uploadBuild: true
+  publish:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    uses: LinkedMink/passport-mutual-key-challenge/.github/workflows/publish.yml@main
+    with:
+      uploadToTag: ${{ github.ref_name }}
+      uploadedBuildName: ${{ needs.build.outputs.uploadedBuildName }} 
+    secrets:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

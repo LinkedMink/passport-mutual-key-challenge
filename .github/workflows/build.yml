@@ -1,0 +1,45 @@
+name: Build
+on:
+  workflow_call:
+    inputs:
+      uploadBuild:
+        type: boolean
+        required: false
+        default: false
+        description: 'Upload distribution files to Github'
+    outputs:
+      uploadedBuildName:
+        description: "If a build is uploaded, this name will be output"
+        value: ${{ jobs.build.outputs.uploadedBuildName }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      uploadedBuildName: ${{ steps.finish-output.outputs.uploadedBuildName }}
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+        # cache: 'yarn'
+    - name: Install
+      run: yarn install --immutable
+    - name: Build
+      run: yarn build
+    - name: Lint
+      run: yarn lint
+    - name: Test
+      run: yarn test || true
+    - name: Package Artifacts
+      if: inputs.uploadBuild
+      run: |
+        yarn pack:all
+        echo "::set-output name=uploadedBuildName::linkedmink-passport-mutual-key-challenge"
+    - name: Upload Artifacts
+      if: inputs.uploadBuild
+      uses: actions/upload-artifact@v2
+      with:
+        name: linkedmink-passport-mutual-key-challenge
+        path: |
+          lib/linkedmink-passport-mutual-key-challenge*.tgz

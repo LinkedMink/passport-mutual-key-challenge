@@ -1,0 +1,25 @@
+name: Publish Dispatch
+concurrency: 
+  group: publish
+  cancel-in-progress: true
+on:
+  workflow_dispatch:
+    inputs:
+      uploadToTag:
+        type: string
+        required: true
+        description: 'Upload built Bundle to Github tag'
+
+jobs:
+  build:
+    uses: LinkedMink/passport-mutual-key-challenge/.github/workflows/build.yml@main
+    with:
+      uploadBuild: true
+  publish:
+    needs: build
+    uses: LinkedMink/passport-mutual-key-challenge/.github/workflows/publish.yml@main
+    with:
+      uploadToTag: ${{ github.event.inputs.uploadToTag }}
+      uploadedBuildName: ${{ needs.build.outputs.uploadedBuildName }} 
+    secrets:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

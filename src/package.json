@@ -1,6 +1,6 @@
 {
   "name": "@linkedmink/passport-mutual-key-challenge-demo",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "Demo App",
   "main": "dist/CliSampleApp.js",
   "license": "MIT",
@@ -10,33 +10,35 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/LinkedMink/multilevel-aging-cache"
+    "url": "https://github.com/LinkedMink/passport-mutual-key-challenge"
   },
+  "private": true,
   "scripts": {
     "start": "ts-node-dev --inspect=0.0.0.0:9229 --respawn --transpile-only ./App.ts",
     "startClient": "ts-node-dev --inspect=0.0.0.0:9228 --respawn --transpile-only ./Client.ts",
-    "build": "tsc --project ./tsconfig.json",
-    "lint": "eslint -c ../.eslintrc.js ./Shared/*.ts ./*.ts",
+    "build": "tsc",
+    "lint": "eslint ./Shared/*.ts ./*.ts",
     "format": "prettier --write ./**/*.ts"
   },
   "dependencies": {
-    "@linkedmink/passport-mutual-key-challenge": "0.1.4",
-    "@linkedmink/passport-mutual-key-challenge-client": "0.1.4",
+    "@linkedmink/passport-mutual-key-challenge": "0.1.6",
+    "@linkedmink/passport-mutual-key-challenge-client": "0.1.6",
     "express": "^4.17.1",
-    "passport": "^0.4.1",
+    "passport": "^0.5.0",
     "passport-jwt": "^4.0.0"
   },
   "devDependencies": {
+    "@tsconfig/node16": "^1.0.2",
     "@types/express": "^4.17.13",
-    "@types/node": "^14.17.9",
+    "@types/node": "^16.11.12",
     "@types/passport": "^1.0.7",
     "@types/passport-jwt": "^3.0.6",
-    "@typescript-eslint/eslint-plugin": "^4.29.1",
-    "@typescript-eslint/parser": "^4.29.1",
-    "eslint": "^7.32.0",
+    "@typescript-eslint/eslint-plugin": "^5.6.0",
+    "@typescript-eslint/parser": "^5.6.0",
+    "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.3.0",
-    "prettier": "^2.3.2",
+    "prettier": "^2.5.1",
     "ts-node-dev": "^1.1.8",
-    "typescript": "^4.3.5"
+    "typescript": "^4.5.3"
   }
 }
