@@ -24,7 +24,7 @@ jobs:
         node-version: '16'
         # cache: 'yarn'
     - name: Install
-      run: yarn install --immutable --inline-builds
+      run: yarn install --immutable
     - name: Build
       run: yarn build
     - name: Lint
