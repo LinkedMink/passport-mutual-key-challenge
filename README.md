@@ -1,6 +1,7 @@
 # passport-mutual-key-challenge
 
 ![Build State](https://github.com/LinkedMink/passport-mutual-key-challenge/actions/workflows/build-main.yml/badge.svg)
+![npm version](https://badge.fury.io/js/@linkedmink%2Fpassport-mutual-key-challenge.svg)
 
 This npm package implements a [Passport](http://www.passportjs.org/) strategy to authenticate
 a client by their public/private key pair. This method was primarily meant to be used in an internal
