@@ -1,6 +1,6 @@
 {
   "name": "@linkedmink/passport-mutual-key-challenge",
-  "version": "0.1.6",
+  "version": "0.1.5",
   "description": "Implements a Passport strategy to authenticate the public key of a user by issuing a dynamic generated challenge",
   "keywords": [
     "authentication",
@@ -27,7 +27,8 @@
     "test": "jest",
     "lint": "eslint --ext .ts src",
     "doc": "typedoc",
-    "npm:pack": "npm pack"
+    "npm:pack": "npm pack",
+    "prepack": "cp ../../{LICENSE,README}.md ."
   },
   "dependencies": {
     "passport-strategy": "^1.0.0"

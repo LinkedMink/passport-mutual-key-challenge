@@ -1,6 +1,6 @@
 {
   "name": "@linkedmink/passport-mutual-key-challenge-client",
-  "version": "0.1.6",
+  "version": "0.1.5",
   "description": "Implements funtions to make a handshake with servers using @linkedmink/passport-mutual-key-challenge",
   "keywords": [
     "authentication",
@@ -27,7 +27,8 @@
     "test": "jest",
     "lint": "eslint --ext .ts src",
     "doc": "typedoc",
-    "npm:pack": "npm pack"
+    "npm:pack": "npm pack",
+    "prepack": "cp ../../{LICENSE,README}.md ."
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.2",

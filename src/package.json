@@ -1,6 +1,6 @@
 {
   "name": "@linkedmink/passport-mutual-key-challenge-demo",
-  "version": "0.1.6",
+  "version": "0.1.5",
   "description": "Demo App",
   "main": "dist/CliSampleApp.js",
   "license": "MIT",
@@ -20,8 +20,8 @@
     "lint": "eslint ./Shared/*.ts ./*.ts"
   },
   "dependencies": {
-    "@linkedmink/passport-mutual-key-challenge": "0.1.6",
-    "@linkedmink/passport-mutual-key-challenge-client": "0.1.6",
+    "@linkedmink/passport-mutual-key-challenge": "0.1.5",
+    "@linkedmink/passport-mutual-key-challenge-client": "0.1.5",
     "express": "^4.17.1",
     "passport": "^0.5.0",
     "passport-jwt": "^4.0.0"
