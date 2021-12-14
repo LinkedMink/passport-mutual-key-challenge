@@ -925,7 +925,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@linkedmink/passport-mutual-key-challenge-client@0.1.6, @linkedmink/passport-mutual-key-challenge-client@workspace:lib/client":
+"@linkedmink/passport-mutual-key-challenge-client@0.1.5, @linkedmink/passport-mutual-key-challenge-client@workspace:lib/client":
   version: 0.0.0-use.local
   resolution: "@linkedmink/passport-mutual-key-challenge-client@workspace:lib/client"
   dependencies:
@@ -947,8 +947,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@linkedmink/passport-mutual-key-challenge-demo@workspace:src"
   dependencies:
-    "@linkedmink/passport-mutual-key-challenge": 0.1.6
-    "@linkedmink/passport-mutual-key-challenge-client": 0.1.6
+    "@linkedmink/passport-mutual-key-challenge": 0.1.5
+    "@linkedmink/passport-mutual-key-challenge-client": 0.1.5
     "@tsconfig/node16": ^1.0.2
     "@types/express": ^4.17.13
     "@types/node": ^16.11.12
@@ -973,7 +973,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@linkedmink/passport-mutual-key-challenge@0.1.6, @linkedmink/passport-mutual-key-challenge@workspace:lib/server":
+"@linkedmink/passport-mutual-key-challenge@0.1.5, @linkedmink/passport-mutual-key-challenge@workspace:lib/server":
   version: 0.0.0-use.local
   resolution: "@linkedmink/passport-mutual-key-challenge@workspace:lib/server"
   dependencies:
